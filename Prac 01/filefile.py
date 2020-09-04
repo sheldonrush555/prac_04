@@ -13,15 +13,15 @@ M - Mark a place as visited
 Q - Quit
 >>>"""
 
-
 def main():
+    places = load_places(PLACES_FILE)
     print("Travel Tracker 1.0 - by Sheldon Rush")
     print("3 places loaded from places.csv")
     print(MENU)
     choice = input(">").upper()
     while choice != "Q":
         if choice == "L":
-            print("List")
+            list_places(places)
         elif choice == "A":
             print("Add")
         elif choice == "M":
@@ -31,5 +31,19 @@ def main():
         print(MENU)
         choice = input(">").upper()
     print("Finished")
-main()
 
+
+def load_places(PLACES_FILE):
+    places = open(PLACES_FILE, "r")
+    return places
+    PLACES_FILE.close()
+
+
+
+def list_places(places):
+    with open("places.csv", "w") as output_file:
+        for place in places:
+            print(place)
+
+
+main()
